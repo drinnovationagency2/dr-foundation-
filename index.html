@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="hi">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex,nofollow">
+  <meta name="theme-color" content="#123d8c">
+  <title>DR Foundation | Admin</title>
+  <link rel="stylesheet" href="../css/style.css">
+  <script defer src="../js/config.js"></script>
+  <script defer src="admin.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+</head>
+<body class="admin-body">
+  <main class="admin-shell">
+    <div class="admin-top"><span class="brand-mark">DR</span><div><h1>DR Foundation</h1><div class="muted">Secure administration portal</div></div></div>
+    <p class="muted">यह पेज वास्तविक Supabase credentials और database policies कॉन्फ़िगर होने के बाद ही लॉगिन और रिकॉर्ड दिखाएगा। कोई demo password नहीं है।</p>
+    <form class="admin-form" id="loginForm">
+      <label><span>ईमेल / Email</span><input type="email" id="email" autocomplete="username" required maxlength="200"></label>
+      <label><span>पासवर्ड / Password</span><input type="password" id="password" autocomplete="current-password" required maxlength="200"></label>
+      <button type="submit" class="button button-blue button-full" id="loginButton">Secure sign in</button>
+    </form>
+    <div class="admin-message" id="adminMessage" role="status" aria-live="polite">Setup required: js/config.js में Supabase URL और public anon/publishable key सेट करें, फिर database/schema.sql चलाएँ।</div>
+    <section class="admin-dashboard" id="dashboard" hidden>
+      <div class="admin-actions"><div><h2>Dashboard</h2><p class="muted" id="signedInAs"></p></div><button class="button button-outline" id="logoutButton" type="button">Sign out</button></div>
+      <div class="admin-stat-grid">
+        <div class="admin-stat"><strong id="projectCount">—</strong><span>Published projects</span></div>
+        <div class="admin-stat"><strong id="enquiryCount">—</strong><span>Enquiries (admin only)</span></div>
+      </div>
+      <h3>Recent projects</h3>
+      <div class="admin-table-wrap"><table class="admin-table"><thead><tr><th>Title</th><th>Status</th><th>Updated</th></tr></thead><tbody id="projectRows"><tr><td colspan="3">Loading…</td></tr></tbody></table></div>
+      <p class="muted">यह प्रारंभिक read-only dashboard है। परियोजना संपादन और आवेदन की स्थिति बदलने की सुविधा अगले चरण में सुरक्षित admin actions के साथ जोड़ी जा सकती है।</p>
+    </section>
+    <p><a class="text-link" href="../index.html">← वेबसाइट पर वापस जाएँ</a></p>
+  </main>
+</body>
+</html>
