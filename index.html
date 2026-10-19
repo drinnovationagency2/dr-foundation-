@@ -3,35 +3,160 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="robots" content="noindex,nofollow">
   <meta name="theme-color" content="#123d8c">
-  <title>DR Foundation | Admin</title>
-  <link rel="stylesheet" href="../css/style.css">
-  <script defer src="../js/config.js"></script>
-  <script defer src="admin.js"></script>
-  <script defer src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <meta name="description" content="DR Foundation — शिक्षा, तकनीकी नवाचार, सामाजिक कल्याण, स्वास्थ्य, पर्यावरण और कौशल विकास के लिए समर्पित।">
+  <meta property="og:title" content="DR Foundation | Education, Innovation & Social Impact">
+  <meta property="og:description" content="Empowering people through education, innovation and social impact.">
+  <meta property="og:type" content="website">
+  <title>DR Foundation | शिक्षा, नवाचार और जनसेवा</title>
+  <link rel="stylesheet" href="css/style.css">
+  <script defer src="js/config.js"></script>
+  <script defer src="js/main.js"></script>
 </head>
-<body class="admin-body">
-  <main class="admin-shell">
-    <div class="admin-top"><span class="brand-mark">DR</span><div><h1>DR Foundation</h1><div class="muted">Secure administration portal</div></div></div>
-    <p class="muted">यह पेज वास्तविक Supabase credentials और database policies कॉन्फ़िगर होने के बाद ही लॉगिन और रिकॉर्ड दिखाएगा। कोई demo password नहीं है।</p>
-    <form class="admin-form" id="loginForm">
-      <label><span>ईमेल / Email</span><input type="email" id="email" autocomplete="username" required maxlength="200"></label>
-      <label><span>पासवर्ड / Password</span><input type="password" id="password" autocomplete="current-password" required maxlength="200"></label>
-      <button type="submit" class="button button-blue button-full" id="loginButton">Secure sign in</button>
-    </form>
-    <div class="admin-message" id="adminMessage" role="status" aria-live="polite">Setup required: js/config.js में Supabase URL और public anon/publishable key सेट करें, फिर database/schema.sql चलाएँ।</div>
-    <section class="admin-dashboard" id="dashboard" hidden>
-      <div class="admin-actions"><div><h2>Dashboard</h2><p class="muted" id="signedInAs"></p></div><button class="button button-outline" id="logoutButton" type="button">Sign out</button></div>
-      <div class="admin-stat-grid">
-        <div class="admin-stat"><strong id="projectCount">—</strong><span>Published projects</span></div>
-        <div class="admin-stat"><strong id="enquiryCount">—</strong><span>Enquiries (admin only)</span></div>
+<body>
+  <a class="skip-link" href="#main" data-i18n="skip">मुख्य सामग्री पर जाएँ</a>
+  <header class="site-header">
+    <div class="container nav-wrap">
+      <a class="brand" href="#home" aria-label="DR Foundation home">
+        <span class="brand-mark" aria-hidden="true">DR</span>
+        <span class="brand-copy"><strong>DR FOUNDATION</strong><small data-i18n="brandTag">शिक्षा • नवाचार • जनसेवा</small></span>
+      </a>
+      <button class="menu-toggle" id="menuToggle" aria-expanded="false" aria-controls="mainNav" aria-label="Open navigation">☰</button>
+      <nav id="mainNav" class="main-nav" aria-label="Main navigation">
+        <a href="#about" data-i18n="navAbout">हमारे बारे में</a>
+        <a href="#programs" data-i18n="navPrograms">कार्यक्रम</a>
+        <a href="#projects" data-i18n="navProjects">प्रोजेक्ट</a>
+        <a href="#join" data-i18n="navJoin">जुड़ें</a>
+        <a href="#contact" data-i18n="navContact">संपर्क</a>
+        <a class="nav-admin" href="admin/" data-i18n="navAdmin">Admin</a>
+        <button id="languageToggle" class="language-toggle" type="button" aria-label="Switch language">EN</button>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main">
+    <section id="home" class="hero">
+      <div class="hero-glow glow-one"></div><div class="hero-glow glow-two"></div>
+      <div class="container hero-grid">
+        <div class="hero-copy">
+          <p class="eyebrow"><span class="eyebrow-dot"></span><span data-i18n="eyebrow">एक बेहतर भविष्य के लिए साथ</span></p>
+          <h1 data-i18n="heroTitle">ज्ञान, नवाचार और सेवा से <span>सकारात्मक बदलाव</span></h1>
+          <p class="hero-description" data-i18n="heroDesc">DR Foundation शिक्षा, तकनीकी नवाचार, सामाजिक कल्याण, स्वास्थ्य-जागरूकता और कौशल विकास के माध्यम से समुदायों के साथ मिलकर काम करने का लक्ष्य रखता है।</p>
+          <div class="hero-actions">
+            <a class="button button-light" href="#programs" data-i18n="explorePrograms">हमारे कार्यक्रम देखें <span aria-hidden="true">↗</span></a>
+            <a class="button button-outline" href="#join" data-i18n="joinMovement">हमसे जुड़ें</a>
+          </div>
+          <div class="hero-note"><span class="note-icon">✦</span><span data-i18n="heroNote">हर पहल में पारदर्शिता, सीखना और सामुदायिक भागीदारी।</span></div>
+        </div>
+        <div class="hero-art" aria-label="Foundation focus areas illustration">
+          <div class="art-orbit orbit-a"></div><div class="art-orbit orbit-b"></div>
+          <div class="art-core"><span class="core-symbol">DR</span><strong>FOUNDATION</strong><small data-i18n="coreCaption">Ideas into impact</small></div>
+          <div class="float-card card-education"><span class="float-icon">✧</span><span><b data-i18n="artEducation">शिक्षा</b><small>Education</small></span></div>
+          <div class="float-card card-innovation"><span class="float-icon">⌘</span><span><b data-i18n="artInnovation">नवाचार</b><small>Innovation</small></span></div>
+          <div class="float-card card-community"><span class="float-icon">♡</span><span><b data-i18n="artCommunity">समुदाय</b><small>Community</small></span></div>
+          <div class="art-spark spark-a">✦</div><div class="art-spark spark-b">✧</div>
+        </div>
       </div>
-      <h3>Recent projects</h3>
-      <div class="admin-table-wrap"><table class="admin-table"><thead><tr><th>Title</th><th>Status</th><th>Updated</th></tr></thead><tbody id="projectRows"><tr><td colspan="3">Loading…</td></tr></tbody></table></div>
-      <p class="muted">यह प्रारंभिक read-only dashboard है। परियोजना संपादन और आवेदन की स्थिति बदलने की सुविधा अगले चरण में सुरक्षित admin actions के साथ जोड़ी जा सकती है।</p>
+      <div class="hero-bottom-line"></div>
     </section>
-    <p><a class="text-link" href="../index.html">← वेबसाइट पर वापस जाएँ</a></p>
+
+    <section class="impact-strip" aria-label="Our focus">
+      <div class="container impact-grid">
+        <div><span class="impact-number">05</span><span data-i18n="focusAreas">मुख्य कार्यक्षेत्र</span></div>
+        <div><span class="impact-number">01</span><span data-i18n="sharedGoal">साझा लक्ष्य — सकारात्मक बदलाव</span></div>
+        <div><span class="impact-number">∞</span><span data-i18n="ideas">सीखने और नवाचार के अवसर</span></div>
+      </div>
+    </section>
+
+    <section id="about" class="section section-white">
+      <div class="container about-grid">
+        <div>
+          <p class="section-kicker" data-i18n="aboutKicker">हम कौन हैं</p>
+          <h2 data-i18n="aboutTitle">अवसरों को सक्षम बनाने वाला एक साझा मंच</h2>
+        </div>
+        <div class="about-content">
+          <p data-i18n="aboutText">DR Foundation का उद्देश्य लोगों को सीखने, नए विचार विकसित करने और समुदाय के लिए उपयोगी पहल में भाग लेने के अवसर देना है। हम कार्यक्रमों और साझेदारियों के माध्यम से व्यावहारिक, समावेशी और जिम्मेदार प्रभाव बनाने की दिशा में काम करना चाहते हैं।</p>
+          <div class="principles">
+            <div><span class="principle-icon">◎</span><strong data-i18n="principle1">समावेशिता</strong><small data-i18n="principle1d">लोगों और समुदायों को साथ लेकर चलना</small></div>
+            <div><span class="principle-icon">◇</span><strong data-i18n="principle2">नवाचार</strong><small data-i18n="principle2d">सीखना, प्रयोग करना और सुधारना</small></div>
+            <div><span class="principle-icon">✓</span><strong data-i18n="principle3">पारदर्शिता</strong><small data-i18n="principle3d">जिम्मेदार और स्पष्ट कार्यप्रणाली</small></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="programs" class="section section-soft">
+      <div class="container">
+        <div class="section-heading">
+          <div><p class="section-kicker" data-i18n="programKicker">हमारी प्राथमिकताएँ</p><h2 data-i18n="programTitle">कार्यक्रम और कार्यक्षेत्र</h2></div>
+          <p data-i18n="programIntro">स्थानीय जरूरतों के अनुसार सीखने, भागीदारी और उपयोगी परियोजनाओं को बढ़ावा देने की दिशा।</p>
+        </div>
+        <div class="program-grid">
+          <article class="program-card"><div class="program-icon icon-blue">▤</div><p class="card-index">01 / EDUCATION</p><h3 data-i18n="p1Title">शिक्षा</h3><p data-i18n="p1Text">शैक्षिक अवसर, डिजिटल साक्षरता, सीखने की सामग्री और विद्यार्थियों के लिए कार्यक्रम।</p><a href="#join" class="text-link" data-i18n="learnJoin">भाग लेने के बारे में जानें ↗</a></article>
+          <article class="program-card"><div class="program-icon icon-violet">⌘</div><p class="card-index">02 / TECHNOLOGY</p><h3 data-i18n="p2Title">तकनीक और नवाचार</h3><p data-i18n="p2Text">तकनीकी विचार, उपयोगी प्रोटोटाइप, डिजिटल समाधान और नवाचार परियोजनाएँ।</p><a href="#join" class="text-link" data-i18n="learnJoin">भाग लेने के बारे में जानें ↗</a></article>
+          <article class="program-card"><div class="program-icon icon-cyan">♡</div><p class="card-index">03 / SOCIAL IMPACT</p><h3 data-i18n="p3Title">सामाजिक कल्याण</h3><p data-i18n="p3Text">समुदाय-आधारित पहल, स्वयंसेवा और जरूरतों के अनुसार सहायता गतिविधियाँ।</p><a href="#join" class="text-link" data-i18n="learnJoin">भाग लेने के बारे में जानें ↗</a></article>
+          <article class="program-card"><div class="program-icon icon-green">♧</div><p class="card-index">04 / HEALTH & ENVIRONMENT</p><h3 data-i18n="p4Title">स्वास्थ्य और पर्यावरण</h3><p data-i18n="p4Text">स्वास्थ्य-जागरूकता, स्वच्छता, पर्यावरण संरक्षण और सामुदायिक अभियान।</p><a href="#join" class="text-link" data-i18n="learnJoin">भाग लेने के बारे में जानें ↗</a></article>
+          <article class="program-card"><div class="program-icon icon-orange">↗</div><p class="card-index">05 / SKILLS</p><h3 data-i18n="p5Title">कौशल विकास</h3><p data-i18n="p5Text">डिजिटल कौशल, व्यावहारिक प्रशिक्षण, कार्यशालाएँ और रोजगार-तैयारी।</p><a href="#join" class="text-link" data-i18n="learnJoin">भाग लेने के बारे में जानें ↗</a></article>
+        </div>
+      </div>
+    </section>
+
+    <section id="projects" class="section section-white">
+      <div class="container">
+        <div class="section-heading">
+          <div><p class="section-kicker" data-i18n="projectKicker">काम को आगे बढ़ाएँ</p><h2 data-i18n="projectTitle">प्रोजेक्ट और पहल</h2></div>
+          <p data-i18n="projectIntro">यहाँ संस्था की सत्यापित, वास्तविक गतिविधियों और परियोजनाओं का विवरण प्रकाशित किया जाएगा।</p>
+        </div>
+        <div class="project-placeholder">
+          <div class="placeholder-icon">✦</div>
+          <div><h3 data-i18n="projectEmptyTitle">पहली परियोजना जल्द जोड़ें</h3><p data-i18n="projectEmptyText">वास्तविक परियोजना शुरू होने पर उसका उद्देश्य, गतिविधियाँ, प्रगति और परिणाम यहाँ प्रकाशित करें। अभी कोई अप्रमाणित उपलब्धि या आँकड़ा प्रदर्शित नहीं किया गया है।</p></div>
+          <a href="#contact" class="button button-blue" data-i18n="suggestProject">प्रोजेक्ट सुझाएँ</a>
+        </div>
+      </div>
+    </section>
+
+    <section id="join" class="section join-section">
+      <div class="container join-grid">
+        <div class="join-copy">
+          <p class="section-kicker section-kicker-light" data-i18n="joinKicker">साथ मिलकर आगे बढ़ें</p>
+          <h2 data-i18n="joinTitle">आपका विचार अगली पहल बन सकता है।</h2>
+          <p data-i18n="joinText">स्वयंसेवक, विद्यार्थी, प्रशिक्षक और सहयोगी के रूप में अपनी रुचि साझा करें। टीम आपसे संपर्क करने के लिए आवेदन प्राप्त होने की व्यवस्था सक्रिय होने के बाद ही जानकारी देख पाएगी।</p>
+          <div class="join-bullets"><span>✓ <span data-i18n="joinB1">अपनी रुचि साझा करें</span></span><span>✓ <span data-i18n="joinB2">कार्यक्रमों में भाग लेने का अवसर</span></span><span>✓ <span data-i18n="joinB3">समुदाय के लिए मिलकर काम करें</span></span></div>
+        </div>
+        <form class="enquiry-form" id="joinForm" data-form-kind="join">
+          <h3 data-i18n="joinFormTitle">रुचि दर्ज करें</h3>
+          <p class="form-intro" data-i18n="formIntro">सभी आवश्यक फ़ील्ड भरें। यह फॉर्म सक्रिय करने के लिए config.js में form endpoint सेट करना होगा।</p>
+          <label><span data-i18n="labelName">पूरा नाम</span><input name="name" autocomplete="name" required maxlength="100" placeholder="आपका नाम"></label>
+          <label><span data-i18n="labelEmail">ईमेल</span><input name="email" type="email" autocomplete="email" required maxlength="150" placeholder="name@example.com"></label>
+          <label><span data-i18n="labelInterest">रुचि का क्षेत्र</span><select name="interest" required><option value="" data-i18n="selectOption">एक विकल्प चुनें</option><option>Education</option><option>Technology & Innovation</option><option>Social Welfare</option><option>Health & Environment</option><option>Skill Development</option><option>Volunteering</option></select></label>
+          <label><span data-i18n="labelMessage">संदेश (वैकल्पिक)</span><textarea name="message" rows="3" maxlength="1000" placeholder="आप कैसे योगदान देना चाहते हैं?"></textarea></label>
+          <label class="consent-row"><input type="checkbox" name="consent" required><span data-i18n="consent">मैं अपनी जानकारी इस अनुरोध के उत्तर के लिए उपयोग किए जाने की सहमति देता/देती हूँ।</span></label>
+          <button type="submit" class="button button-blue button-full" data-i18n="submitInterest">रुचि भेजें</button>
+          <p class="form-status" id="joinStatus" role="status" aria-live="polite"></p>
+        </form>
+      </div>
+    </section>
+
+    <section id="contact" class="section section-white contact-section">
+      <div class="container contact-grid">
+        <div><p class="section-kicker" data-i18n="contactKicker">संपर्क</p><h2 data-i18n="contactTitle">आइए, बातचीत शुरू करें।</h2><p data-i18n="contactText">कार्यक्रम, साझेदारी या सामान्य पूछताछ के लिए संदेश भेजें। नीचे दिए गए ईमेल को लॉन्च से पहले अपने सत्यापित आधिकारिक संपर्क से मिलाएँ।</p></div>
+        <div class="contact-panel">
+          <div class="contact-line"><span class="contact-icon">✉</span><div><small data-i18n="emailLabel">ईमेल</small><a href="mailto:contact@drfoundation.example" id="contactEmail">contact@drfoundation.example</a></div></div>
+          <div class="contact-line"><span class="contact-icon">⌂</span><div><small data-i18n="onlineLabel">ऑनलाइन</small><a href="#" id="websiteLink" aria-label="Website address">DR Foundation Website</a></div></div>
+          <a class="button button-blue" href="#join" data-i18n="sendEnquiry">पूछताछ भेजें ↗</a>
+          <p class="small-note" data-i18n="contactNote">यह प्रारंभिक टेम्पलेट है। प्रकाशित करने से पहले संस्था का सही संपर्क और कानूनी विवरण भरें।</p>
+        </div>
+      </div>
+    </section>
   </main>
+
+  <footer class="site-footer">
+    <div class="container footer-main">
+      <a class="brand brand-footer" href="#home"><span class="brand-mark">DR</span><span class="brand-copy"><strong>DR FOUNDATION</strong><small data-i18n="brandTag">शिक्षा • नवाचार • जनसेवा</small></span></a>
+      <p data-i18n="footerText">सीखने, नवाचार और सामुदायिक भागीदारी से बेहतर भविष्य की ओर।</p>
+      <div class="footer-links"><a href="#about" data-i18n="navAbout">हमारे बारे में</a><a href="#programs" data-i18n="navPrograms">कार्यक्रम</a><a href="privacy.html" data-i18n="privacy">गोपनीयता</a><a href="admin/" data-i18n="navAdmin">Admin</a></div>
+    </div>
+    <div class="container footer-bottom"><span>© <span id="year"></span> DR Foundation</span><span data-i18n="footerDisclaimer">सभी कार्यक्रमों और दावों को प्रकाशित करने से पहले सत्यापित करें।</span></div>
+  </footer>
 </body>
 </html>
